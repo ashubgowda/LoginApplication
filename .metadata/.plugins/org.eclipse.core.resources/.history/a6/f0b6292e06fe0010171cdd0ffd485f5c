@@ -1,0 +1,107 @@
+package com.qa.tests;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+
+public class Login2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/locatorspractice/");
+		driver.manage().window().maximize();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
+		
+		String userName = "Ashwini";
+		String passWord = "password";
+		String phoneNumber = "1234567890";
+		String emailID = "email@gmail.com";
+		
+		Login2.loginCredentials(driver, userName, passWord);
+//		driver.findElement(By.id("inputUsername")).sendKeys(userName);
+//		driver.findElement(By.name("inputPassword")).sendKeys(passWord);
+//		driver.findElement(By.className("signInBtn")).click();
+//		
+		//Thread.sleep(2000);
+		
+		//WebElement errorMsgElement = driver.findElement(By.xpath("//p[@class='error']"));
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='error']")));
+		
+		String errorMsg =  driver.findElement(By.xpath("//p[@class='error']")).getText();
+		System.out.println(errorMsg);
+		
+		Assert.assertEquals(errorMsg, "* Incorrect username or password");
+		
+		driver.findElement(By.linkText("Forgot your password?")).click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[contains(text(),'Forgot password')]")));
+		
+		Assert.assertEquals(driver.findElement(By.xpath("//h2[contains(text(),'Forgot password')]")).getText(), "Forgot password");
+	
+		//different ways of identifying same element
+		//h2[text()='Forgot password']/following-sibling::input[1] --> using sibling
+		//div[@class='form-container sign-up-container']/form/input[1] -->parent--child
+//		
+//		driver.findElement(By.xpath("//div[@class='form-container sign-up-container']/form/input[1]")).sendKeys("ashwini");
+//		driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("password");
+//		driver.findElement(By.cssSelector("input[placeholder='Phone Number']")).sendKeys("1234567890");
+//		
+//		driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+//		String infoMsg = driver.findElement(By.cssSelector(".infoMsg")).getText();
+//		String[] resetPwdList =infoMsg.split("'");
+//		System.out.println(resetPwdList[1]);
+//		String resetPassword = resetPwdList[1];
+		
+
+		String resetPassword = Login2.resetPassword(driver, userName, emailID, phoneNumber ); 
+		driver.findElement(By.cssSelector(".go-to-login-btn")).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//h1[text()='Sign in']")).getText(),"Sign in");
+		
+		Login2.loginCredentials(driver, userName, resetPassword);
+		
+		Login2.validateSuccessfulLogin();
+		
+
+	}
+
+	public static void loginCredentials(WebDriver driver, String userName, String passWord) {
+		driver.findElement(By.id("inputUsername")).sendKeys(userName);
+		driver.findElement(By.name("inputPassword")).sendKeys(passWord);
+		driver.findElement(By.className("signInBtn")).click();
+		
+	}
+	
+	public static String resetPassword(WebDriver driver, String userName, String emailID, String phoneNumber) {
+
+		driver.findElement(By.xpath("//div[@class='form-container sign-up-container']/form/input[1]")).sendKeys(userName);
+		driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys(emailID);
+		driver.findElement(By.cssSelector("input[placeholder='Phone Number']")).sendKeys(phoneNumber);
+
+		driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+		String infoMsg = driver.findElement(By.cssSelector(".infoMsg")).getText();
+		String[] resetPwdList =infoMsg.split("'");
+		System.out.println(resetPwdList[1]);
+		String resetPassword = resetPwdList[1];
+		return resetPassword;
+	}
+	
+	public static void validateSuccessfulLogin(WebDriver driver) {
+		Assert.assertEquals(driver.findElement(By.xpath(driver.findElement(By.xpath("//h2[contains(text(),'Forgot password')]")).getText())), "You are successfully logged in.");
+		
+		String loggedInUserName = driver.findElement(By.cssSelector("div[class='login-container'] h2")).getText();
+		loggedInUserName.split(" ")[1].replace(",", "");
+	}
+	
+	
+
+}
