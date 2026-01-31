@@ -14,40 +14,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest {
 
-//	public static void main(String[] args) throws InterruptedException {
-//		// TODO Auto-generated method stub
-//
-//		//Setup Chrome driver and initialize
-//		WebDriver driver = new ChromeDriver();
-//		driver.get("https://rahulshettyacademy.com/locatorspractice/");
-//		driver.manage().window().maximize();
-//
-//		//Credentials
-//		String userName = "Avighna";
-//		String passWord = "password";
-//		String phoneNumber = "1234567890";
-//		String emailID = "email@gmail.com";
-//
-//		//Sync - Explicit Wait
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//		
-//		//Validate wrong Login Credentials scenario
-//		LoginTest.loginCredentials(driver, userName, passWord,wait);
-//
-//		//Validate reset password scenario
-//		String resetPassword = LoginTest.resetPassword(driver, userName, emailID, phoneNumber);
-//		driver.findElement(By.cssSelector(".go-to-login-btn")).click();
-//		Assert.assertEquals(driver.findElement(By.xpath("//h1[text()='Sign in']")).getText(), "Sign in");
-//
-//		//Validate Login with reset Password scenario
-//		LoginTest.loginCredentials(driver, userName, resetPassword, wait);
-//
-//		//Validate Successful login screen
-//		LoginTest.validateSuccessfulLogin(driver, userName, wait);
-//
-//		//close all associated browser windows
-//		driver.quit();
-//	}
+
 	public WebDriver driver;
 
 	@Test
