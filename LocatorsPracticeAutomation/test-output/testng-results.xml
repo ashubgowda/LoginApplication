@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-01-31T13:14:03 IST" name="Default suite" finished-at="2026-01-31T13:14:17 IST" duration-ms="13765">
+    <groups>
+    </groups>
+    <test started-at="2026-01-31T13:14:03 IST" name="Default test" finished-at="2026-01-31T13:14:17 IST" duration-ms="13765">
+      <class name="com.qa.tests.LoginTest">
+        <test-method is-config="true" signature="launchBrowserTest()[pri:0, instance:com.qa.tests.LoginTest@4567f35d]" started-at="2026-01-31T13:14:03 IST" name="launchBrowserTest" finished-at="2026-01-31T13:14:10 IST" duration-ms="7467" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchBrowserTest -->
+        <test-method signature="loginFlowTest()[pri:0, instance:com.qa.tests.LoginTest@4567f35d]" started-at="2026-01-31T13:14:10 IST" name="loginFlowTest" finished-at="2026-01-31T13:14:16 IST" duration-ms="5628" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFlowTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.qa.tests.LoginTest@4567f35d]" started-at="2026-01-31T13:14:16 IST" name="tearDown" finished-at="2026-01-31T13:14:17 IST" duration-ms="588" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.qa.tests.LoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
