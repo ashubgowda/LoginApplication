@@ -1,0 +1,14 @@
+# Eclipse workspace
+.metadata/
+
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# Java build folders
+target/
+bin/
+
+# Logs
+*.log
