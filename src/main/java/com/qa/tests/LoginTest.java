@@ -8,7 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -43,13 +45,7 @@ public class LoginTest {
 		LoginTest.validateSuccessfulLogin(driver, userName, wait);
 	}
 
-	@BeforeTest
-	public void launchBrowserTest() {
-		// Setup Chrome driver and initialize
-		driver = new ChromeDriver();
-		driver.get("https://rahulshettyacademy.com/locatorspractice/");
-		driver.manage().window().maximize();
-	}
+	
 
 	public static void loginCredentials(WebDriver driver, String userName, String passWord, WebDriverWait wait) {
 		driver.findElement(By.id("inputUsername")).sendKeys(userName);
@@ -89,8 +85,16 @@ public class LoginTest {
 				"You are successfully logged in.");
 
 	}
+	
+	@BeforeMethod
+	public void launchBrowserTest() {
+		// Setup Chrome driver and initialize
+		driver = new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/locatorspractice/");
+		driver.manage().window().maximize();
+	}
 
-	@AfterTest
+	@AfterMethod
 	public void tearDown() {
 		// close all associated browser windows
 		driver.quit();
